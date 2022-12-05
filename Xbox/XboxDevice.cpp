@@ -62,6 +62,11 @@ bool XboxDevice::UpdateXboxState()
 	return TRUE;
 }
 
+void XboxDevice::ReceiveXboxState(const uint8_t* packet)
+{
+	memcpy(p_state, packet, sizeof(XINPUT_STATE));
+}
+
 XboxDevice::~XboxDevice()
 {
 	ResetGamepads();

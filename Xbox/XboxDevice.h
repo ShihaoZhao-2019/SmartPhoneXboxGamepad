@@ -26,7 +26,7 @@ public:
 private:
 	void ResetGamepads();
 	bool UpdateXboxState();
-	bool ReceiveXboxState();
+	void ReceiveXboxState(const uint8_t* packet);
 	~XboxDevice();
 
 public:
