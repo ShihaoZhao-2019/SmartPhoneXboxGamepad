@@ -24,6 +24,12 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Communication\TransCOM.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\TransUDP.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ViGEmBus\include\ViGEm\km\BusShared.h">
@@ -45,6 +51,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Xbox\XboxDevice.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\TransCOM.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\TransUDP.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

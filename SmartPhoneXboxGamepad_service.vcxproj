@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Communication\TransCOM.cpp" />
+    <ClCompile Include="Communication\TransUDP.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ViGEmBus\src\ViGEmClient.cpp" />
     <ClCompile Include="Xbox\XboxDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Communication\TransCOM.h" />
+    <ClInclude Include="Communication\TransUDP.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\Client.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\Common.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\km\BusShared.h" />
@@ -89,19 +93,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
+    <IncludePath>$(ProjectDir)./;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
+    <IncludePath>$(ProjectDir)./;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
+    <IncludePath>$(ProjectDir)./;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
+    <IncludePath>$(ProjectDir)./;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)./Xbox;$(ProjectDir)./ViGEmBus/include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
