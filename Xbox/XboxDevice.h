@@ -12,6 +12,9 @@
 #include <stdint.h>
 #include <assert.h>
 #include <memory>
+#include <chrono>
+#include <thread>
+#include <mutex>
 
 //some Macro Definition
 #define XUSER_MAX_COUNT			1
@@ -22,12 +25,16 @@ class XboxDevice
 public:
 	XboxDevice();
 	void init();
+	void ReceiveXboxState(std::mutex* xbox_state_mutex,const uint8_t* packet);
+	//set it is a static function,in order to std::thread
+	static void CycleUpdateXboxState(std::mutex* xbox_state_mutex, XboxDevice *self);
+	~XboxDevice();
+	
+
 
 private:
 	void ResetGamepads();
 	bool UpdateXboxState();
-	void ReceiveXboxState(const uint8_t* packet);
-	~XboxDevice();
 
 public:
 

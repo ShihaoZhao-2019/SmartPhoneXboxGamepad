@@ -1,28 +1,36 @@
 #include "TransCOM.h"
 
-TransCOM::TransCOM()
+int TransCOM::Send(HANDLE  packet)
 {
-    nAddeLen = sizeof(SOCKADDR);
-}
-
-
-int TransCOM::Send(COMMON_MESSEGE_HANDLE* packet)
-{
-    UpdateSendBuff(packet);
-    const int nSendSize = sendto(connect_socket, (char *)SendBuff, MAX_SEND_BUF_LEN, 0, (SOCKADDR*)&sin, nAddeLen);
-    return nSendSize;
+    return 0;
 }
 
 int TransCOM::Receive()
 {
-    const int nReceiveSize = recvfrom(connect_socket, (char*)ReceiveBuff, MAX_RECEIVE_BUF_LEN, 0, (SOCKADDR*)&sin_from, &nAddeLen);
-    PraseData();
-    //printf("%x\n", sin_from.sin_addr.s_addr);
-    //printf("%d\n", sin_from.sin_port);
-    return nReceiveSize;
+    return 0;
 }
 
+TransCOM::TransCOM()
+{
+    nAddeLen = sizeof(SOCKADDR);
+    nInAddeLen = sizeof(SOCKADDR_IN);
+}
+
+bool TransCOM::init(ULONG ip, WORD port)
+{
+    return false;
+}
+
+
 TransCOM::~TransCOM()
+{
+}
+
+void TransCOM::UpdateSendBuff(HANDLE  packet)
+{
+}
+
+void TransCOM::PraseData()
 {
 }
 

@@ -22,12 +22,16 @@
     <ClCompile Include="Communication\TransCOM.cpp" />
     <ClCompile Include="Communication\TransUDP.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Communication\TransTCP.cpp" />
+    <ClCompile Include="Transfer\MessegeTransfer.cpp" />
     <ClCompile Include="ViGEmBus\src\ViGEmClient.cpp" />
     <ClCompile Include="Xbox\XboxDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communication\TransCOM.h" />
     <ClInclude Include="Communication\TransUDP.h" />
+    <ClInclude Include="Communication\TransTCP.h" />
+    <ClInclude Include="Transfer\MessegeTransfer.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\Client.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\Common.h" />
     <ClInclude Include="ViGEmBus\include\ViGEm\km\BusShared.h" />
@@ -110,7 +114,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -125,7 +129,7 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -140,7 +144,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -155,7 +159,7 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

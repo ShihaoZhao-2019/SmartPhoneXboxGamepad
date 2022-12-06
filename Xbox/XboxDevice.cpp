@@ -62,9 +62,24 @@ bool XboxDevice::UpdateXboxState()
 	return TRUE;
 }
 
-void XboxDevice::ReceiveXboxState(const uint8_t* packet)
+void XboxDevice::ReceiveXboxState(std::mutex* xbox_state_mutex ,const uint8_t* packet)
 {
+	std::lock_guard<std::mutex> lock(*xbox_state_mutex);
 	memcpy(p_state, packet, sizeof(XINPUT_STATE));
+}
+
+void XboxDevice::CycleUpdateXboxState(std::mutex* xbox_state_mutex, XboxDevice* self)
+{
+	while (true)
+	{
+		xbox_state_mutex->lock();
+		if (self->UpdateXboxState() == FALSE)
+		{
+			printf("update xbox state Failed");
+		}
+		xbox_state_mutex->unlock();
+		std::this_thread::sleep_for(std::chrono::milliseconds(1)); //µ•Œª «∫¡√Î
+	}
 }
 
 XboxDevice::~XboxDevice()

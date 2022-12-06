@@ -2,18 +2,21 @@
 #include "TransCOM.h"
 
 
+
 class TransUDP :
     public TransCOM
 {
 public:
     TransUDP(UINT port);
     const SOCKADDR_IN& GetClientMessege() ;
+    int Receive() override;
+    int Send(HANDLE packet) override;
+    ~TransUDP() override;
 
 private:
-    bool init(UINT port) override;
+    bool init(ULONG ip, WORD port) override;
     void PraseData() override;
-    void UpdateSendBuff(COMMON_MESSEGE_HANDLE* packet) override;
-    ~TransUDP() override;
+    void UpdateSendBuff(HANDLE packet) override;
 private:
     bool bOpt;
     SOCKADDR_IN client_messege;

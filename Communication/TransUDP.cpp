@@ -4,7 +4,7 @@
 
 TransUDP::TransUDP(UINT port) 
 {
-	init(port);
+	init(INADDR_BROADCAST,port);
 }
 
 
@@ -17,7 +17,7 @@ const SOCKADDR_IN& TransUDP::GetClientMessege()
 
 
 
-bool TransUDP::init(UINT port)
+bool TransUDP::init(ULONG ip , WORD port)
 {
 	//init socket
 	connect_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -35,7 +35,7 @@ bool TransUDP::init(UINT port)
 	//init addr -- other addr
 	sin_from.sin_family = AF_INET;
 	sin_from.sin_port = htons(port);
-	sin_from.sin_addr.s_addr = INADDR_BROADCAST;//INADDR_BROADCAST = 255.255.255.255 express broadcast addr
+	sin_from.sin_addr.s_addr = ip;//INADDR_BROADCAST = 255.255.255.255 express broadcast addr
 
 	bOpt = true;
 	setsockopt(connect_socket, SOL_SOCKET, SO_BROADCAST, (char*)&bOpt, sizeof(bOpt));
@@ -48,6 +48,7 @@ bool TransUDP::init(UINT port)
 	}
 
 	p_client_messege = &client_messege;
+	return TRUE;
 }
 
 void TransUDP::PraseData()
@@ -55,7 +56,23 @@ void TransUDP::PraseData()
 	memcpy(p_client_messege,ReceiveBuff, nAddeLen);
 }
 
-void TransUDP::UpdateSendBuff(COMMON_MESSEGE_HANDLE* packet)
+int TransUDP::Send(HANDLE packet)
+{
+	UpdateSendBuff(packet);
+	const int nSendSize = sendto(connect_socket, (char*)SendBuff, MAX_SEND_BUF_LEN, 0, (SOCKADDR*)&sin, nAddeLen);
+	return nSendSize;
+}
+
+int TransUDP::Receive()
+{
+	const int nReceiveSize = recvfrom(connect_socket, (char*)ReceiveBuff, MAX_RECEIVE_BUF_LEN, 0, (SOCKADDR*)&sin_from, &nAddeLen);
+	PraseData();
+	//printf("%x\n", sin_from.sin_addr.s_addr);
+	//printf("%d\n", sin_from.sin_port);
+	return nReceiveSize;
+}
+
+void TransUDP::UpdateSendBuff(HANDLE packet)
 {
 
 }
