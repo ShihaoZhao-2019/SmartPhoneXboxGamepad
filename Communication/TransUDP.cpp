@@ -53,7 +53,9 @@ bool TransUDP::init(ULONG ip , WORD port)
 
 void TransUDP::PraseData()
 {
-	memcpy(p_client_messege,ReceiveBuff, nAddeLen);
+	memcpy(&p_client_messege->sin_addr.S_un.S_addr, ReceiveBuff, sizeof(unsigned int));
+	memcpy(&p_client_messege->sin_port, ReceiveBuff+sizeof(unsigned int), sizeof(unsigned short));
+	p_client_messege->sin_family = AF_INET;
 }
 
 int TransUDP::Send(HANDLE packet)
@@ -67,8 +69,10 @@ int TransUDP::Receive()
 {
 	const int nReceiveSize = recvfrom(connect_socket, (char*)ReceiveBuff, MAX_RECEIVE_BUF_LEN, 0, (SOCKADDR*)&sin_from, &nAddeLen);
 	PraseData();
-	//printf("%x\n", sin_from.sin_addr.s_addr);
-	//printf("%d\n", sin_from.sin_port);
+	printf("receive:\n");
+	printf("%d\n",client_messege.sin_addr.s_addr);
+	printf("%d\n",client_messege.sin_port);
+	printf("nReceiveSize:%d\n", nReceiveSize);
 	return nReceiveSize;
 }
 

@@ -32,8 +32,8 @@ std::mutex* TransTCP::GetPReceiveBuffMutex()
 bool TransTCP::init(ULONG ip, WORD port)
 {
 	sin_from.sin_family = AF_INET;
-	sin_from.sin_port = port;
-	sin_from.sin_addr.S_un.S_addr = ip;
+	sin_from.sin_port = htons(port);
+	sin_from.sin_addr.S_un.S_addr = htonl(ip);
 
 	connect_socket = socket(AF_INET, SOCK_STREAM,0);
 	if (SOCKET_ERROR == connect_socket) {
