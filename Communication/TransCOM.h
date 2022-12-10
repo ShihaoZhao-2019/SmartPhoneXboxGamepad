@@ -14,6 +14,7 @@ class TransCOM:
         public QObject
 {
 
+
 public:
     virtual int Send(void *  packet);
 	virtual int Receive();

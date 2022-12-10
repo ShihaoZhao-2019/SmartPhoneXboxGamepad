@@ -21,6 +21,8 @@ TransTCP::TransTCP()
         qDebug() << "client connect success" << Qt::endl;
         qDebug() << "client ip:"<< client_address << Qt::endl;
         qDebug() << "client port"<< client_port;
+        emit tcp_connect();
+
     });
 }
 
