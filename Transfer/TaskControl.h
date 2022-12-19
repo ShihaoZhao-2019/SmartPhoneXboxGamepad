@@ -14,6 +14,7 @@ class TaskControl:
 {
 public:
     TaskControl();
+    QSharedPointer<Xbox> GetTcpXboxDevice();
 private:
     void SendStart();
     void SendEnd();

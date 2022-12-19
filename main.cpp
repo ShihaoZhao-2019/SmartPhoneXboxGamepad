@@ -1,9 +1,8 @@
 #include <QGuiApplication>
+#include <QQmlContext>
 #include <QQmlApplicationEngine>
-#include <Communication/TransUDP.h>
-#include <Communication/TransTCP.h>
+#include <Transfer/TaskControl.h>
 #include <iostream>
-
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +15,13 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+    TaskControl main_task;
     engine.load(url);
+    engine.rootContext()->setContextProperty("xBoxState",main_task.GetTcpXboxDevice().get());
+//    Xbox *p = Xbox::getInstance();
+//    p->SetY();
+
+
 //    auto t = new TransTCP();
 //    auto p = new TransUDP();
 //    p->SetTCPPort(LOCAL_TCP_PORT);

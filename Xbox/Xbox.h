@@ -21,7 +21,6 @@
 #define BITUp               BITE(15)
 
 
-
 typedef struct _XINPUT_GAMEPAD
 {
     quint16                         wButtons;
@@ -43,55 +42,63 @@ class Xbox : public QObject
 {
     Q_OBJECT
 public:
-    explicit Xbox(QObject *parent = nullptr);
-    XINPUT_GAMEPAD &GetXboxState();
-    PXINPUT_GAMEPAD &GetPXboxState();
+    // 公有静态成员函数，返回唯一实例
+    static Xbox* getInstance();
+
+    XINPUT_STATE &GetXboxState();
+    PXINPUT_STATE &GetPXboxState();
     //press
-    void SetY();
-    void SetX();
-    void SetB();
-    void SetA();
-    void SetRB();
-    void SetLB();
-    void SetThumbR();
-    void SetThumbL();
-    void SetView();
-    void SetMenu();
-    void SetRight();
-    void SetLeft();
-    void SetDown();
-    void SetUp();
+    Q_INVOKABLE void SetY();
+    Q_INVOKABLE void SetX();
+    Q_INVOKABLE void SetB();
+    Q_INVOKABLE void SetA();
+    Q_INVOKABLE void SetRB();
+    Q_INVOKABLE void SetLB();
+    Q_INVOKABLE void SetThumbR();
+    Q_INVOKABLE void SetThumbL();
+    Q_INVOKABLE void SetView();
+    Q_INVOKABLE void SetMenu();
+    Q_INVOKABLE void SetRight();
+    Q_INVOKABLE void SetLeft();
+    Q_INVOKABLE void SetDown();
+    Q_INVOKABLE void SetUp();
 
     //release
-    void ReleaseY();
-    void ReleaseX();
-    void ReleaseB();
-    void ReleaseA();
-    void ReleaseRB();
-    void ReleaseLB();
-    void ReleaseThumbR();
-    void ReleaseThumbL();
-    void ReleaseView();
-    void ReleaseMenu();
-    void ReleaseRight();
-    void ReleaseLeft();
-    void ReleaseDown();
-    void ReleaseUp();
+    Q_INVOKABLE void ReleaseY();
+    Q_INVOKABLE void ReleaseX();
+    Q_INVOKABLE void ReleaseB();
+    Q_INVOKABLE void ReleaseA();
+    Q_INVOKABLE void ReleaseRB();
+    Q_INVOKABLE void ReleaseLB();
+    Q_INVOKABLE void ReleaseThumbR();
+    Q_INVOKABLE void ReleaseThumbL();
+    Q_INVOKABLE void ReleaseView();
+    Q_INVOKABLE void ReleaseMenu();
+    Q_INVOKABLE void ReleaseRight();
+    Q_INVOKABLE void ReleaseLeft();
+    Q_INVOKABLE void ReleaseDown();
+    Q_INVOKABLE void ReleaseUp();
 
     //Change Analog value
-    void ChangeThumbLY(short value);
-    void ChangeThumbLX(short value);
-    void ChangeThumbRX(short value);
-    void ChangeThumbRY(short value);
-    void ChangeLeftTrigger(short value);
-    void ChangeRightTrigger(short value);
+    Q_INVOKABLE void ChangeThumbLY(short value);
+    Q_INVOKABLE void ChangeThumbLX(short value);
+    Q_INVOKABLE void ChangeThumbRX(short value);
+    Q_INVOKABLE void ChangeThumbRY(short value);
+    Q_INVOKABLE void ChangeLeftTrigger(unsigned char value);
+    Q_INVOKABLE void ChangeRightTrigger(unsigned char value);
 
 private:
-    XINPUT_GAMEPAD xbox_state;
-    PXINPUT_GAMEPAD p_xbox_state;
+    // 私有构造函数，保证外界无法直接实例化
+    explicit Xbox(QObject *parent = nullptr);
+private:
+    // 私有静态变量，保存唯一实例
+    static Xbox *instance;
+    XINPUT_STATE xbox_state;
+    PXINPUT_STATE p_xbox_state;
+
+
     std::mutex data_mutex;
 
-signals:
 
 };
 

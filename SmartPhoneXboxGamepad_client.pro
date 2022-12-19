@@ -8,7 +8,18 @@ SOURCES += \
         Xbox/Xbox.cpp \
         main.cpp
 
-resources.files = main.qml 
+resources.files = main.qml  \
+                  MyUI/ClassXboxLayout.qml\
+                  MyUI/JoystickThumbPad.qml\
+                  MyUI/Trigger.qml\
+                  MyUI/images/xbox_img.jpg\
+                  MyUI/images/xbox_img_crop.jpg\
+                  MyUI/images/Up.svg\
+                  MyUI/images/Down.svg\
+                  MyUI/images/Left.svg\
+                  MyUI/images/Right.svg
+
+
 resources.prefix = /$${TARGET}
 RESOURCES += resources
 
