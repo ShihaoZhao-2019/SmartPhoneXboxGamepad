@@ -23,6 +23,12 @@ resources.files = main.qml  \
 resources.prefix = /$${TARGET}
 RESOURCES += resources
 
+DISTFILES += \
+        AndroidSource/AndroidManifest.xml
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/AndroidSource
+
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
