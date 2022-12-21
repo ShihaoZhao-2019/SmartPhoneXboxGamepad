@@ -23,13 +23,6 @@ PXINPUT_STATE &Xbox::GetPXboxState()
     return p_xbox_state;
 }
 
-void OutputwButtons()
-{
-//    for (int i = 15; i >= 0; i--) {
-//            qDebug("%d", p_xbox_state->Gamepad.wButtons & 1 << i ? 1 : 0);
-//    }
-}
-
 
 // Set Key
 void Xbox::SetY()
@@ -180,37 +173,31 @@ void Xbox::ReleaseUp()
     p_xbox_state->Gamepad.wButtons &= ~BITUp;
 }
 
-void MyPrint(PXINPUT_GAMEPAD p)
-{
-//    qDebug("Lx:%d",p->sThumbLX);
-//    qDebug("Ly:%d",p->sThumbLY);
-//    qDebug("Rx:%d",p->sThumbRX);
-//    qDebug("Ry:%d",p->sThumbRY);
-}
+
 //Change Analog value
 void Xbox::ChangeThumbLY(short value)
 {
     std::lock_guard<std::mutex> lock(data_mutex); //加锁
     p_xbox_state->Gamepad.sThumbLY = value;
-    MyPrint(&p_xbox_state->Gamepad);
+
 }
 void Xbox::ChangeThumbLX(short value)
 {
     std::lock_guard<std::mutex> lock(data_mutex); //加锁
     p_xbox_state->Gamepad.sThumbLX = value;
-    MyPrint(&p_xbox_state->Gamepad);
+
 }
 void Xbox::ChangeThumbRX(short value)
 {
     std::lock_guard<std::mutex> lock(data_mutex); //加锁
     p_xbox_state->Gamepad.sThumbRX = value;
-    MyPrint(&p_xbox_state->Gamepad);
+
 }
 void Xbox::ChangeThumbRY(short value)
 {
     std::lock_guard<std::mutex> lock(data_mutex); //加锁
     p_xbox_state->Gamepad.sThumbRY = value;
-    MyPrint(&p_xbox_state->Gamepad);
+
 }
 void Xbox::ChangeLeftTrigger(unsigned char value)
 {
@@ -225,3 +212,21 @@ void Xbox::ChangeRightTrigger(unsigned char value)
 
 
 Xbox* Xbox::instance = nullptr;
+
+
+void OutputwButtons(PXINPUT_GAMEPAD p_xbox_state)
+{
+    for (int i = 15; i >= 0; i--)
+    {
+            qDebug("bit%d:%d", 15-i, p_xbox_state->wButtons & 1 << i ? 1 : 0);
+    }
+}
+void MyPrint(PXINPUT_GAMEPAD p)
+{
+//    qDebug("Lx:%d",p->sThumbLX);
+//    qDebug("Ly:%d",p->sThumbLY);
+//    qDebug("Rx:%d",p->sThumbRX);
+//    qDebug("Ry:%d",p->sThumbRY);
+
+//    OutputwButtons(p);
+}

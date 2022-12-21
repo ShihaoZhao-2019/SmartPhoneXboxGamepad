@@ -102,4 +102,6 @@ private:
 
 };
 
+
+void MyPrint(PXINPUT_GAMEPAD p);
 #endif // XBOX_H

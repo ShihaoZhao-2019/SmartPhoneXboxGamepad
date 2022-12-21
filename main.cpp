@@ -15,9 +15,9 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    TaskControl main_task;
+    TaskControl *main_task = new TaskControl();
     engine.load(url);
-    engine.rootContext()->setContextProperty("xBoxState",main_task.GetTcpXboxDevice().get());
+    engine.rootContext()->setContextProperty("xBoxState",main_task->GetTcpXboxDevice().get());
 //    Xbox *p = Xbox::getInstance();
 //    p->SetY();
 

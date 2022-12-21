@@ -18,5 +18,4 @@ Window {
         height:parent.height
 
     }
-
 }

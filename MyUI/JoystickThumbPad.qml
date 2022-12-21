@@ -52,6 +52,9 @@ Item {
         // Re-Center sticks as needed
         stickPositionX = _centerXY
         stickPositionY = _centerXY
+
+        xValueChange(xPositionDelta/width)
+        yValueChange(yPositionDelta/width)
     }
 
     ///--Where the thumb is pressed, it is the center of the joystick

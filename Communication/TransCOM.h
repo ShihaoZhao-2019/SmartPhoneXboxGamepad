@@ -7,7 +7,7 @@
 #include <memory.h>
 
 #define	MAX_SEND_BUF_LEN			32
-#define MAX_RECEIVE_BUF_LEN			MAX_SEND_BUF_LEN*2
+#define MAX_RECEIVE_BUF_LEN			MAX_SEND_BUF_LEN
 
 
 class TransCOM:
