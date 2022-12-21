@@ -62,10 +62,30 @@ bool XboxDevice::UpdateXboxState()
 	return TRUE;
 }
 
+
+void OutputwButtons(PXINPUT_GAMEPAD p_xbox_state)
+{
+	for (int i = 15; i >= 0; i--)
+	{
+		printf("bit%d:%d\n", 15 - i, p_xbox_state->wButtons & 1 << i ? 1 : 0);
+	}
+}
+void MyPrint(PXINPUT_GAMEPAD p)
+{
+	printf("Lx:%d\n", p->sThumbLX);
+	printf("Ly:%d\n", p->sThumbLY);
+	printf("Rx:%d\n", p->sThumbRX);
+	printf("Ry:%d\n", p->sThumbRY);
+
+	OutputwButtons(p);
+}
+
+
 void XboxDevice::ReceiveXboxState(std::mutex* xbox_state_mutex ,const uint8_t* packet)
 {
 	std::lock_guard<std::mutex> lock(*xbox_state_mutex);
 	memcpy(p_state, packet, sizeof(XINPUT_STATE));
+	//MyPrint(&p_state->Gamepad);
 }
 
 void XboxDevice::CycleUpdateXboxState(std::mutex* xbox_state_mutex, XboxDevice* self)
@@ -88,3 +108,6 @@ XboxDevice::~XboxDevice()
 	vigem_free(client);
 	vigem_target_free(pad);
 }
+
+
+

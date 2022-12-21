@@ -11,6 +11,9 @@ int main()
 
 	MessTrans* p = new MessTrans();
 	p->TaskContorl();
+	delete p;
+
+
 }
 
 

@@ -26,6 +26,7 @@ public:
 	XboxDevice();
 	void init();
 	void ReceiveXboxState(std::mutex* xbox_state_mutex,const uint8_t* packet);
+	bool UpdateXboxState();
 	//set it is a static function,in order to std::thread
 	static void CycleUpdateXboxState(std::mutex* xbox_state_mutex, XboxDevice *self);
 	~XboxDevice();
@@ -34,7 +35,7 @@ public:
 
 private:
 	void ResetGamepads();
-	bool UpdateXboxState();
+	
 
 public:
 

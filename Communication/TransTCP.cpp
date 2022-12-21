@@ -1,4 +1,5 @@
 #include "TransTCP.h"
+#include <xbox/XboxDevice.h>
 #include <iostream>
 TransTCP::TransTCP(ULONG ip, WORD port)
 {
@@ -15,6 +16,7 @@ int TransTCP::Receive()
 	const int len = recv(connect_socket,(char *)ReceiveBuff, MAX_RECEIVE_BUF_LEN, 0);
 	//ReceiveBuff[len] = '\0';
 	//std::cout<<"len:"<<len<<"messege:"<< ReceiveBuff<<std::endl;
+	//std::cout << "len:" << len << std::endl;
 	return len;
 }
 

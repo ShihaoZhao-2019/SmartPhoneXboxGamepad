@@ -24,6 +24,7 @@ private:
 	std::shared_ptr<TransTCP> share_p_tcp_client;
 	std::shared_ptr<TransUDP> share_p_udp_client;
 	std::shared_ptr<XboxDevice> share_p_xbox_device;
+	bool share_p_xbox_device_flag;
 
 	bool xbox_thread_start_flag;
 };
